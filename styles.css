@@ -1,0 +1,175 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #e0f2fe, #bae6fd);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.bouquet {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+  margin: 0 auto;
+}
+
+.flower {
+  position: absolute;
+  width: 120px;
+  height: 100px;
+  top: var(--top);
+  left: var(--left);
+  transform: rotate(var(--rotate, 0deg)) scale(var(--scale, 1));
+  z-index: 1;
+}
+
+.flower::before {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 240px;
+  background: linear-gradient(to bottom, #15803d, #166534);
+  bottom: -220px;
+  left: 57px;
+  transform-origin: bottom center;
+  animation: stemSway 4s ease-in-out infinite;
+  border-radius: 3px;
+}
+
+.flower::after {
+  content: '';
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: var(--color);
+  top: 42.5px;
+  left: 42.5px;
+  z-index: 3;
+  animation: centerPulse 3s ease-in-out infinite;
+  box-shadow: inset -2px -2px 6px rgba(0,0,0,0.2);
+}
+
+.rose .petal {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  top: 17.5px;
+  left: 37.5px;
+  border-radius: 50% 50% 0 50%;
+  background: var(--color);
+  box-shadow: -1px 1px 4px rgba(0,0,0,0.15);
+  transform-origin: bottom center;
+  animation: petalWave 3s ease-in-out infinite;
+}
+
+.tulip .petal {
+  position: absolute;
+  width: 40px;
+  height: 60px;
+  top: 0px;
+  left: 40px;
+  border-radius: 50% 50% 0 0;
+  background: var(--color);
+  box-shadow: -1px 1px 4px rgba(0, 0, 0, 0.15);
+  transform-origin: bottom center;
+  animation: petalWave 3s ease-in-out infinite;
+}
+
+.daisy .petal {
+  position: absolute;
+  width: 20px;
+  height: 40px;
+  top: 20px;
+  left: 50px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transform-origin: bottom center;
+  animation: petalWave 3s ease-in-out infinite;
+}
+
+.rose::after {
+  background-color: rgb(146, 221, 253);
+}
+
+.tulip::after {
+  background-color: #eeeeee;
+}
+
+.daisy::after {
+  background: #1e40af;
+  border: 2px solid #1d4ed8;
+}
+
+.leaf {
+  position: absolute;
+  width: 50px;
+  height: 90px;
+  background: linear-gradient(45deg, #15803d, #22c55e);
+  border-radius: 0 50% 0 50%;
+  bottom: var(--bottom);
+  left: var(--left);
+  transform: rotate(var(--rotate, 0deg)) scale(var(--scale, 1));
+  animation: leafSway 4s ease-in-out infinite;
+  box-shadow: -2px 2px 4px rgba(0,0,0,0.15);
+  z-index: 0;
+}
+
+.ribbon {
+  position: absolute;
+  width: 110px;
+  height: 115px;
+  background: linear-gradient(45deg, #1e40af, #3b82f6);
+  bottom: 100px;
+  left: 160px;
+  transform: rotate(-20deg);
+  animation: ribbonWave 3s ease-in-out infinite;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+.ribbon-tail-left {
+  left: -20px;
+  border-radius: 50% 0 0 50%;
+  transform: rotate(+1deg);
+}
+
+.ribbon-tail-right {
+  right: -10px;
+  border-radius: 0 50% 50% 0;
+  transform: rotate(1deg);
+}
+
+@keyframes petalWave {
+  0%, 100% { transform: rotate(var(--angle)) translateY(-15px); }
+  50% { transform: rotate(calc(var(--angle) + 5deg)) translateY(-17px); }
+}
+
+@keyframes centerPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes stemSway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(2deg); }
+}
+
+@keyframes leafSway {
+  0%, 100% { transform: rotate(var(--rotate, 0deg)) scale(var(--scale, 1)); }
+  50% { transform: rotate(calc(var(--rotate, 0deg) + 3deg)) scale(var(--scale, 1)); }
+}
+
+@keyframes ribbonWave {
+  0%, 100% { transform: rotate(-5deg) translateY(0); }
+  50% { transform: rotate(-3deg) translateY(-2px); }
+}
